@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#071512">
+<title>Deka Sonjaya - Modern Spiritual (Kitab Tiga)</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--gold:#c9a86a;--gold2:#e8d5a8;--green:#0f2e26;--bg:#071512;--muted:#c8c0ad}
+html,body{width:100%;height:100%;height:100vh;height:100dvh;height:100svh;overflow:hidden;background:#000;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#fff;overscroll-behavior:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+img{display:block;max-width:100%}
+.page{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;height:100svh;min-height:100dvh;display:none;overflow:hidden}
+.page.active{display:flex;flex-direction:column}
+/* ===== PEMBUKA - DIBUAT DARI KODE, BUKAN GAMBAR ===== */
+#opening{background:radial-gradient(ellipse at 50% 0%,#123a2d 0%,#071512 55%,#04100c 100%);overflow:hidden}
+.open-frame{position:absolute;inset:10px;border:1px solid rgba(201,168,106,.75);border-radius:4px;pointer-events:none}
+.open-frame:before{content:"";position:absolute;inset:5px;border:1px solid rgba(201,168,106,.35);border-radius:2px}
+.open-corner{position:absolute;width:42px;height:42px;border:2px solid var(--gold2);pointer-events:none}
+.open-corner.tl{top:10px;left:10px;border-right:none;border-bottom:none}
+.open-corner.tr{top:10px;right:10px;border-left:none;border-bottom:none}
+.open-corner.bl{bottom:10px;left:10px;border-right:none;border-top:none}
+.open-corner.br{bottom:10px;right:10px;border-left:none;border-top:none}
+.open-orn{position:absolute;font-size:34px;color:rgba(201,168,106,.25);pointer-events:none;line-height:1}
+.open-orn.o1{top:22px;left:22px}
+.open-orn.o2{top:22px;right:22px;transform:scaleX(-1)}
+.open-orn.o3{bottom:22px;left:22px;transform:scaleY(-1)}
+.open-orn.o4{bottom:22px;right:22px;transform:scale(-1)}
+.open-content{position:relative;z-index:2;flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:calc(18px + env(safe-area-inset-top)) 26px calc(18px + env(safe-area-inset-bottom));gap:8px;overflow-y:auto}
+.open-top{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold2)}
+@keyframes kitabIn{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes kitabShine{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes kitabGlow{0%,100%{box-shadow:0 10px 26px rgba(0,0,0,.45),0 0 0 rgba(232,213,168,0)}50%{box-shadow:0 10px 26px rgba(0,0,0,.45),0 0 22px rgba(232,213,168,.55)}}
+@keyframes mppBlink{0%,100%{opacity:1;transform:scale(1);text-shadow:0 0 10px rgba(255,228,94,.9),0 0 22px rgba(255,228,94,.55)}50%{opacity:.35;transform:scale(.97);text-shadow:0 0 2px rgba(255,228,94,.2)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.kitab-badge{display:flex;flex-direction:column;align-items:center;gap:8px;margin:8px 0 2px}
+.kitab-main{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(110deg,#c9a86a 20%,#fff6d8 38%,#e8d5a8 50%,#c9a86a 68%);background-size:200% 100%;color:#1a1408;font-weight:900;letter-spacing:.18em;font-size:13px;padding:11px 22px;border-radius:4px;border:1px solid rgba(255,255,255,.7);box-shadow:0 10px 26px rgba(0,0,0,.45);animation:kitabIn .7s .15s ease both,kitabShine 3.2s 1.2s linear infinite,kitabGlow 2.8s 1.2s ease-in-out infinite}
+.kitab-main i{width:6px;height:6px;border-radius:50%;background:#1a1408;display:block}
+.masterpiece{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.35);border:1px solid rgba(201,168,106,.6);padding:9px 13px;border-radius:999px}
+.masterpiece b{color:var(--gold2)}
+.mpp{display:inline-block;color:#ffe45e;font-weight:900;letter-spacing:.28em;animation:mppBlink 1.15s ease-in-out infinite}
+.open-name{font-family:Georgia,serif;font-size:clamp(36px,9vw,62px);line-height:.95;font-weight:600;letter-spacing:-.02em;animation:fadeInUp .7s .45s ease both}
+.open-sub{font-size:clamp(14px,4vw,19px);letter-spacing:.28em;text-transform:uppercase;color:#f2e6c2;animation:fadeInUp .7s .55s ease both}
+.open-line{width:68px;height:1px;background:var(--gold);margin:8px 0 2px}
+.open-big{font-family:Georgia,serif;font-size:clamp(34px,10vw,58px);line-height:1.02;font-weight:700;color:#f5e3a8;text-shadow:0 4px 22px rgba(0,0,0,.5);animation:fadeInUp .7s .65s ease both}
+.open-big2{font-family:Georgia,serif;font-size:clamp(22px,6.5vw,34px);line-height:1.2;color:#fff8dc;animation:fadeInUp .7s .75s ease both}
+.open-mot{max-width:560px;font-size:clamp(14px,3.8vw,17px);line-height:1.65;color:#efe8d6;font-style:italic;margin-top:6px;animation:fadeInUp .7s .85s ease both}
+.open-important{max-width:560px;background:rgba(255,255,255,.06);border:1px solid rgba(201,168,106,.45);border-radius:12px;padding:10px 14px;font-size:clamp(12.5px,3.4vw,14.5px);line-height:1.6;color:#f5eedd;animation:fadeInUp .7s .9s ease both}
+.open-important b{color:#fff}
+.btn-enter{margin-top:10px;width:min(100%,360px);height:56px;flex:0 0 56px;border-radius:999px;background:linear-gradient(180deg,#e8d5a8,#c9a86a);color:#1a1408;font-weight:800;font-size:16px;letter-spacing:.04em;box-shadow:0 14px 30px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;gap:8px;animation:fadeInUp .7s 1s ease both}
+.btn-enter:active{transform:scale(.98)}
+.btn-enter small{font-size:12px;font-weight:800;opacity:.75;letter-spacing:.08em}
+.open-foot{font-size:11px;letter-spacing:.18em;color:rgba(255,255,255,.72);margin-top:6px;text-transform:uppercase;animation:fadeInUp .7s 1.05s ease both}
+#main{background:var(--bg)}
+.topbar{height:60px;flex:0 0 60px;display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 14px;background:rgba(15,46,38,.97);border-bottom:1px solid rgba(201,168,106,.28);z-index:20}
+.top-left{display:flex;align-items:center;gap:10px;min-width:0}
+.top-logo{width:38px;height:38px;object-fit:contain;border-radius:50%;background:#fff;padding:2px;cursor:pointer}
+.top-title{line-height:1.1;min-width:0}
+.top-title b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.top-title span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);white-space:nowrap}
+.top-kitab{font-size:10px;letter-spacing:.18em;font-weight:800;background:var(--gold);color:#1a1408;padding:5px 8px;border-radius:999px;white-space:nowrap}
+.top-actions{display:flex;gap:6px;align-items:center}
+.icon-btn{width:40px;height:40px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;font-size:18px}
+.icon-btn.active{background:var(--gold);color:#1a1408}
+.main-body{flex:1;min-height:0;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.progress{height:4px;background:rgba(255,255,255,.12);flex:0 0 4px}
+.progress i{display:block;height:100%;background:var(--gold);width:5%;transition:width .35s}
+.slide-meta{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.slide-meta b{color:var(--gold2);font-size:12px}
+.slide-wrap{flex:1;min-height:0;overflow:hidden;position:relative;touch-action:pan-y}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;overflow:hidden}
+.slide.active{display:flex}
+
+/* ===== PENYEMPURNAAN PRESISI UKURAN & LETAK GAMBAR ===== */
+.slide-img-box{
+  width:100%;
+  height:42%;
+  flex:0 0 42%;
+  position:relative;
+  padding:0;
+  background:radial-gradient(ellipse at 50% 42%,#184c3c 0%,#0b241d 65%,#061410 100%);
+  border-bottom:1px solid rgba(201,168,106,.22);
+  overflow:hidden;
+}
+.slide-img-box:before{
+  content:"❖";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  font-size:64px;
+  color:rgba(201,168,106,.16);
+  pointer-events:none;
+}
+.slide-img-box img{
+  position:relative;
+  z-index:1;
+  width:100%;
+  height:100%;
+  max-width:none;
+  max-height:none;
+  object-fit:cover;
+  object-position:center center;
+  border-radius:0;
+  border:none;
+  box-shadow:none;
+  display:block;
+}
+.slide-img-box:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  background:linear-gradient(180deg,transparent 62%,rgba(7,21,18,1) 100%);
+  pointer-events:none;
+}
+.slide-img-badge{
+  position:absolute;
+  left:14px;
+  bottom:12px;
+  transform:none;
+  z-index:3;
+  max-width:calc(100% - 28px);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  background:rgba(7,21,18,.82);
+  border:1px solid rgba(201,168,106,.38);
+  color:var(--gold2);
+  padding:5px 12px;
+  border-radius:999px;
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  backdrop-filter:blur(6px);
+}
+
+.slide-text{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:16px 18px 14px;scrollbar-width:thin}
+.slide-text h2{font-family:Georgia,serif;font-size:clamp(22px,6vw,30px);line-height:1.15;margin-bottom:8px}
+.slide-text h3{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:14px 0 6px}
+.slide-text p{font-size:clamp(15px,4.1vw,17px);line-height:1.75;color:#e9e4d6;margin-bottom:10px}
+.slide-text blockquote{margin:10px 0;padding:12px 14px;border-left:3px solid var(--gold);background:rgba(201,168,106,.10);border-radius:0 10px 10px 0;font-size:14.5px;line-height:1.65;color:#f5eedd}
+.slide-text blockquote i{color:var(--gold2)}
+.slide-text ul,.slide-text ol{margin:6px 0 10px 18px;line-height:1.7;font-size:15px;color:#e9e4d6}
+.slide-text li{margin-bottom:6px}
+.slide-text b{color:#fff}
+.hl-gold{color:#ffd76a;font-weight:800}
+.hl-green{color:#7ef0a8;font-weight:800}
+.hl-blue{color:#7ec8ff;font-weight:800}
+.hl-orange{color:#ffb26b;font-weight:800}
+.hl-pink{color:#ff9ec6;font-weight:800}
+.hl-yellow{color:#ffe45e;font-weight:800}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+.legend span{font-size:11px;font-weight:800;padding:5px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06)}
+.player{flex:0 0 auto;background:#0c231d;border-top:1px solid rgba(201,168,106,.28);padding:10px 14px calc(10px + env(safe-area-inset-bottom))}
+.player-row{display:flex;align-items:center;gap:10px}
+.time{font-size:12px;min-width:42px;text-align:center;color:#d9d2bd;font-variant-numeric:tabular-nums}
+input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:6px;border-radius:999px;background:rgba(255,255,255,.18);outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#e8d5a8;border:3px solid #0f2e26;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#e8d5a8;border:3px solid #0f2e26}
+.controls{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
+.ctrl-group{display:flex;align-items:center;gap:8px}
+.nav-btn{height:44px;padding:0 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);font-weight:700;font-size:13px;display:flex;align-items:center;gap:6px}
+.nav-btn:disabled{opacity:.35}
+.play-btn{width:56px;height:56px;border-radius:50%;background:linear-gradient(180deg,#e8d5a8,#c9a86a);color:#1a1408;font-size:20px;display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.speed-btn{height:36px;padding:0 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);font-size:12px;font-weight:700}
+.audio-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:6px}
+.audio-label b{color:#fff}
+.toc{position:absolute;inset:0;z-index:30;display:none;background:rgba(0,0,0,.55)}
+.toc.open{display:block}
+.toc-panel{position:absolute;right:0;top:0;bottom:0;width:min(92vw,360px);background:#0f2e26;border-left:1px solid rgba(201,168,106,.3);display:flex;flex-direction:column;overflow:hidden}
+.toc-head{padding:16px;border-bottom:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;align-items:center}
+.toc-head b{font-family:Georgia,serif;font-size:20px}
+.toc-list{flex:1;overflow-y:auto;padding:10px}
+.toc-item{width:100%;text-align:left;display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:12px;margin-bottom:4px}
+.toc-item.active{background:rgba(201,168,106,.16);border:1px solid rgba(201,168,106,.35)}
+.toc-num{width:30px;height:30px;flex:0 0 30px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:12px;font-weight:800}
+.toc-item.active .toc-num{background:var(--gold);color:#1a1408}
+.toc-item span{font-size:13.5px;line-height:1.4;color:#e9e4d6}
+.toc-item small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+@media (orientation:portrait){
+  .slide{flex-direction:column}
+  .slide-img-box{width:100%;height:42%;flex:0 0 42%;padding:0;border-bottom:1px solid rgba(201,168,106,.22);border-right:none}
+}
+@media (orientation:portrait) and (min-width:700px){
+  .slide-img-box{width:100%;height:46%;flex:0 0 46%;padding:0}
+}
+@media (orientation:landscape) and (max-height:520px){
+  .topbar{height:52px;flex-basis:52px}
+  .slide{flex-direction:row}
+  .slide-img-box{width:48%;height:100%;flex:0 0 48%;padding:0;border-bottom:none;border-right:1px solid rgba(201,168,106,.22)}
+  .slide-img-box:after{background:linear-gradient(90deg,transparent 72%,rgba(7,21,18,.95) 100%)}
+  .slide-text{padding:14px 18px}
+  .player{padding-top:8px}
+  .open-content{justify-content:center;padding-top:10px;padding-bottom:10px;gap:5px}
+  .open-big{font-size:32px}
+  .open-big2{font-size:20px}
+  .open-important,.open-mot{display:none}
+}
+@media (orientation:landscape) and (min-height:521px){
+  .slide{flex-direction:row}
+  .slide-img-box{width:46%;height:100%;flex:0 0 46%;padding:0;border-bottom:none;border-right:1px solid rgba(201,168,106,.22)}
+  .slide-img-box:after{background:linear-gradient(90deg,transparent 72%,rgba(7,21,18,.95) 100%)}
+  .slide-text{padding:22px 28px}
+}
+@media (min-width:900px){
+  .main-body{max-width:1100px;margin:0 auto;width:100%}
+  .slide{flex-direction:row}
+  .slide-img-box{width:46%;height:100%;flex:0 0 46%;padding:0;border-bottom:none;border-right:1px solid rgba(201,168,106,.22)}
+  .slide-img-box:after{background:linear-gradient(90deg,transparent 72%,rgba(7,21,18,.95) 100%)}
+  .slide-text{padding:22px 32px}
+  .slide-text p{font-size:17px}
+  .player{max-width:1100px;margin:0 auto;width:100%}
+  .topbar{padding-left:22px;padding-right:22px}
+}
+@media (prefers-reduced-motion:reduce){
+  .kitab-main,.mpp{animation:none}
+}
+</style>
+</head>
+<body>
+<section id="opening" class="page active">
+  <div class="open-frame"></div>
+  <div class="open-corner tl"></div><div class="open-corner tr"></div><div class="open-corner bl"></div><div class="open-corner br"></div>
+  <div class="open-orn o1">❖</div><div class="open-orn o2">❖</div><div class="open-orn o3">❖</div><div class="open-orn o4">❖</div>
+  <div class="open-content">
+    <div class="open-top">Deka Sonjaya • Modern Spiritual</div>
+    <div class="kitab-badge">
+      <div class="kitab-main"><i></i> KITAB TIGA • MASTERPIECE <i></i></div>
+      <div class="masterpiece">★ <b>MASTERPIECE</b> • <span class="mpp">MATERI PALING PENTING</span> ★</div>
+    </div>
+    <div class="open-name">Deka Sonjaya</div>
+    <div class="open-sub">Modern Spiritual</div>
+    <div class="open-line"></div>
+    <div class="open-big">Tauhid & Sejatinya Manusia</div>
+    <div class="open-big2">— Mengenal Dzat, Sifat, Asma, Af’al &<br>Keselarasan Jagat Kabir – Jagat Sagir —</div>
+    <p class="open-mot">“Barang siapa mengenal dirinya sendiri, maka sungguh<br>ia telah mengenal Tuhannya.”</p>
+    <div class="open-important"><b>Tauhid & Sejatinya Manusia • Rahasia Ketuhanan dan Pengenalan Diri.</b><br>20 Slide • Materi Mendalam • Refleksi • Panduan Spiritual</div>
+    <button class="btn-enter" id="enterBtn">Masuk <small>— Bismillah</small> &nbsp; →</button>
+    <div class="open-foot">Kitab Tiga • 20 Slide • Full Screen</div>
+  </div>
+</section>
+<section id="main" class="page">
+  <header class="topbar">
+    <div class="top-left">
+      <img class="top-logo" id="logoHome" src="logo.png" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Ccircle cx=%2232%22 cy=%2232%22 r=%2231%22 fill=%22%230f2e26%22 stroke=%22%23c9a86a%22 stroke-width=%222%22/%3E%3Ctext x=%2232%22 y=%2239%22 font-family=%22Georgia,serif%22 font-size=%2222%22 font-weight=%22bold%22 fill=%22%23e8d5a8%22 text-anchor=%22middle%22%3EDS%3C/text%3E%3C/svg%3E';" alt="Logo - Kembali ke Pembuka" title="Kembali ke Pembuka - Tetap Full Screen">
+      <div class="top-title"><b>Deka Sonjaya</b><span>Modern Spiritual</span></div>
+    </div>
+    <div class="top-actions"><span class="top-kitab">KITAB TIGA</span><button class="icon-btn" id="tocBtn" title="Daftar Isi">☰</button></div>
+  </header>
+  <div class="main-body">
+    <div class="progress"><i id="progressBar"></i></div>
+    <div class="slide-meta"><span id="slideKicker">Bagian 1 • Pembuka Kitab Tiga</span><b id="slideCount">1 / 20</b></div>
+    <div class="slide-wrap" id="slideWrap"></div>
+    <div class="player">
+      <div class="player-row">
+        <span class="time" id="curTime">0:00</span>
+        <input type="range" id="seek" min="0" max="100" value="0" step="0.1" aria-label="Geser audio">
+        <span class="time" id="durTime">0:00</span>
+      </div>
+      <div class="controls">
+        <div class="ctrl-group"><button class="nav-btn" id="prevBtn">← Sebelumnya</button></div>
+        <div class="ctrl-group"><button class="speed-btn" id="speedBtn">1x</button><button class="play-btn" id="playBtn">▶</button></div>
+        <div class="ctrl-group"><button class="nav-btn" id="nextBtn">Berikutnya →</button></div>
+      </div>
+      <div class="audio-label">Audio: <b id="audioLabel">slide1.mp3</b> • Geser bar untuk ke menit yang diinginkan</div>
+    </div>
+    <div class="toc" id="toc"><div class="toc-panel"><div class="toc-head"><b>Daftar Isi Kitab Tiga</b><button class="icon-btn" id="closeToc">✕</button></div><div class="toc-list" id="tocList"></div></div></div>
+  </div>
+</section>
+<audio id="audio" preload="auto" playsinline></audio>
+<script>
+const LEGEND=`<div class="legend"><span style="color:#ffd76a">● DZAT / KUNCI UTAMA</span><span style="color:#7ef0a8">● SIFAT / TAREKAT</span><span style="color:#7ec8ff">● ASMA / NUR</span><span style="color:#ffb26b">● AF'AL / KARYA</span><span style="color:#ff9ec6">● MA'RIFAT / SEJATI</span></div>`;
+
+const slides=[
+{
+  t:"Pembuka Kitab Tiga",
+  k:"Bagian 1 • Pembuka Kitab Tiga",
+  h:"Assalamu'alaikum, Selamat Datang di Kitab Tiga",
+  c:LEGEND+`<p>Assalamu'alaikum warahmatullahi wabarakatuh. Selamat pagi, selamat siang, salam sejahtera untuk kita semua.</p>
+  <p>Bertemu kembali bersama saya, <span class="hl-gold">Deka Sonjaya.</span></p>
+  <p>Sebelum kita melangkah lebih jauh memasuki pembahasan <b>Kitab Tiga</b> ini, izinkan saya kembali menyampaikan doa dan harapan terbaik untuk kita semua yang hadir dan menyimak di sini.</p>
+  <p>Semoga Allah SWT senantiasa memudahkan setiap langkah kita hari ini, melapangkan dada kita, dan menjadikan pertemuan lanjutan ini bukan sekadar majelis biasa, melainkan majelis ilmu yang penuh berkah serta dicatat sebagai amal kebaikan di sisi-Nya.</p>
+  <p>Semoga Allah melembutkan hati kita, agar ilmu yang kita renungkan bersama hari ini tidak hanya berhenti di telinga atau menjadi sekadar hafalan di kepala, tetapi <span class="hl-green">benar-benar meresap ke dalam rasa, menghidupkan kesadaran batin, dan menjelma menjadi amal nyata dalam kehidupan kita sehari-hari.</span></p>
+  <p>Semoga bagi siapa saja yang hatinya masih diliputi kegelisahan, Allah tenangkan batinnya. Yang sedang diuji dengan sakit, Allah angkat dan sembuhkan penyakitnya. Yang sedang memiliki hajat dan ikhtiar, Allah kabulkan dengan jalan terbaik-Nya. Dan bagi yang sedang mencari jalan pulang menuju ketenangan sejati, Allah bukakan pintu petunjuk-Nya seluas-luasnya.</p>
+  <p>Mari kita awali kelanjutan perjalanan ilmu kita hari ini dengan mengucapkan basmalah bersama-sama.</p>
+  <blockquote><i>Bismillahirrahmanirrahim.</i><br><b>Pembuka Kajian Kitab Tiga</b></blockquote>`
+},
+{
+  t:"Peta Kajian Kitab Tiga",
+  k:"Bagian 2 • Kesinambungan & Peta Kajian",
+  h:"Kesinambungan Kitab Satu, Kitab Dua, dan Peta Kajian Kitab Tiga",
+  c:LEGEND+`<p>Pada pertemuan-pertemuan sebelumnya, kita sudah menapaki dua tahapan penting. Di <b>Kitab Satu</b>, kita telah membuka pintu pemahaman mengenai fondasi dasar ilmu agama dan tauhid—merenungkan kembali bahwa ibadah syahadat, shalat, dan puasa bukan sekadar rutinitas lahiriah, melainkan kesaksian makna di balik apa yang kita ucapkan dan kerjakan.</p>
+  <p>Kemudian di <b>Kitab Dua</b>, kita melanjutkan perjalanan itu dengan menuntaskan pembahasan tentang Syahadat, Martabat Alam Tujuh, hakikat Rukun Iman, tangga menuju Ma’rifat, hingga Rukun Islam yang seluruhnya kita selaraskan langsung dengan wujud diri kita sendiri.</p>
+  <p>Nah, hari ini di <span class="hl-gold">Kitab Tiga</span>, kita akan menyelam lebih dalam lagi untuk membedah rahasia ketuhanan dan pengenalan diri secara menyeluruh:</p>
+  <ul>
+    <li>Mengupas tuntas empat perkara utama—<span class="hl-gold">Dzatullah, Sifatullah, Asma’ullah, dan Af’alullah</span>—baik yang terhampar di alam semesta maupun yang bersemayam di dalam diri kita sendiri.</li>
+    <li>Menyimak makna mendalam di balik gelar Nabi Muhammad SAW sebagai <span class="hl-green">Al-Awwalu Wal Akhiru</span> dan <span class="hl-green">Khataman Nabiyyin</span>, serta melihat kenyataan enam rasul utama di dalam diri.</li>
+    <li>Memahami <span class="hl-blue">Kaidah Susunan Serba Empat</span>, hakikat puji, proses masuknya nyawa, dan asal-usul nafsu.</li>
+    <li>Menyingkap keselarasan presisi antara <span class="hl-orange">Jagat Kabir</span> (alam semesta) dan <span class="hl-orange">Jagat Sagir</span> (diri manusia), hingga menemukan jalan untuk mengenal <span class="hl-pink">Sejatinya Manusia.</span></li>
+  </ul>
+  <p>Seperti biasa, setiap pembahasan akan saya lengkapi dengan dalil-dalil Al-Qur'an, Hadis Nabi, kaidah khazanah tasawuf para ulama, serta perumpamaan-perumpamaan yang dekat dengan kehidupan sehari-hari. Tujuannya agar kita belajarnya tenang, mantap, lurus pemahamannya, dan terhindar dari kekeliruan. Santai saja, mari kita selami pelan-pelan dan kita renungkan bersama-sama.</p>`
+},
+{
+  t:"Empat Perkara Utama: Dimensi Luar",
+  k:"Bagian 3 • Dimensi Luar (Jagat Kabir)",
+  h:"Empat Perkara Utama — Dimensi Luar (Alam Semesta / Jagat Kabir)",
+  c:LEGEND+`<p>Saudaraku sekalian, kita akan membedah landasan utama dalam ilmu ketauhidan dan pengenalan diri, yakni empat perkara pokok: <span class="hl-gold">Dzatullah, Sifatullah, Asma’ullah, dan Af’alullah.</span> Keempat perkara ini akan kita tinjau dari tiga dimensi: dimensi luar (alam semesta), dimensi diri secara lahiriah, serta dimensi dalam (hakikat/batin).</p>
+  <p>Pertama, pada <b>Dimensi Luar atau Alam Semesta (Jagat Kabir)</b>:</p>
+  <ul>
+    <li><b><span class="hl-gold">Dzatullah:</span></b> Adalah <b>Alam</b> itu sendiri, yang meliputi seluruh alam semesta (alam dunia).</li>
+    <li><b><span class="hl-green">Sifatullah:</span></b> Adalah <b>Cahaya Terang</b> yang memenuhi seluruh kolong langit. Allah Yang Maha Agung hanya memiliki satu Dzat dan satu Sifat, namun meliputi segala sesuatu yang tercipta. Tidak ada satu pun ciptaan yang berada di luar liputan Dzat Yang Maha Suci.</li>
+    <li><b><span class="hl-blue">Asma’ullah:</span></b> Adalah empat unsur utama alam, yaitu <b>Api, Angin, Air, dan Tanah</b>. Keempat unsur ini menjadi perwujudan huruf dari lafaz Asma Allah (<span class="hl-yellow">الله</span>): unsur pertama menjadi huruf <b>Alif (ا)</b>, unsur kedua menjadi huruf <b>Lam Awal (ل)</b>, unsur ketiga menjadi huruf <b>Lam Akhir (ل)</b>, dan unsur keempat menjadi huruf <b>Ha (ه)</b>.</li>
+    <li><b><span class="hl-orange">Af’alullah:</span></b> Adalah <b>Hawa (Udara atau Energi)</b> yang menghidupi seluruh jagat raya.</li>
+  </ul>`
+},
+{
+  t:"Empat Perkara Utama: Dimensi Diri Lahiriah",
+  k:"Bagian 3 • Dimensi Diri (Jagat Sagir)",
+  h:"Empat Perkara Utama — Dimensi Diri Secara Lahiriah (Alam Kecil)",
+  c:LEGEND+`<p>Kedua, apabila ditarik ke dalam <b>Dimensi Diri Secara Lahiriah (Alam Kecil / Jagat Sagir)</b>, keempat perkara tersebut memiliki kenyataan sebagai berikut:</p>
+  <ul>
+    <li><b><span class="hl-gold">Dzatullah:</span></b> Adalah <b>badan sekujur tubuh</b>, mulai dari ujung kepala hingga telapak kaki.</li>
+    <li><b><span class="hl-green">Sifatullah:</span></b> Adalah <b>rupa atau wajah kita</b>. Meski Allah Maha Esa, bukti keesaan-Nya terlihat pada rupa manusia di seluruh dunia yang tidak pernah ada yang sama persis—bahkan anak kembar sekalipun pasti memiliki ciri pembeda.</li>
+    <li><b><span class="hl-blue">Asma’ullah:</span></b> Adalah <b>Daging, Tulang, Sumsum, dan Kulit</b>. Sebagaimana di alam semesta, keempat unsur tubuh ini juga membentuk lafaz Asma Allah (<span class="hl-yellow">الله</span>), yakni huruf <b>Alif, Lam Awal, Lam Akhir, dan Ha</b>.</li>
+    <li><b><span class="hl-orange">Af’alullah:</span></b> Adalah <b>gerak-gerik diri</b>, yaitu seluruh aktivitas dan pergerakan badan kita.</li>
+  </ul>`
+},
+{
+  t:"Ringkasan pada Pancaindra & Nafas",
+  k:"Bagian 3 • Pancaindra, Nafas & Ma'rifat",
+  h:"Ringkasan pada Pancaindra, Nafas, dan Empat Tahapan Ilmu",
+  c:LEGEND+`<p>Jika diringkas ke dalam fungsi utama tubuh manusia, keempat perkara tersebut terpusat pada:</p>
+  <ul>
+    <li><b><span class="hl-gold">Dzatullah (Ucapan):</span></b> Ucapan merupakan bibit yang melahirkan segala keramaian di alam dunia. Tanpa adanya ucapan atau bahasa, gedung-gedung, kendaraan, dan peradaban manusia tidak akan terwujud.</li>
+    <li><b><span class="hl-green">Sifatullah (Penglihatan):</span></b> Mata menjadi tempat berkumpulnya segala sifat—baik dan buruk, terang dan gelap, merah dan putih—di seluruh langit dan bumi.</li>
+    <li><b><span class="hl-blue">Asma’ullah (Pendengaran):</span></b> Telinga adalah wadah berkumpulnya segala suara dan perkataan yang diucapkan oleh mulut.</li>
+    <li><b><span class="hl-orange">Af’alullah (Nafas):</span></b> Secara syariat, nafas adalah bayangan dari Sifat Hidup yang menjadi tiang penegak wujud. Tanpa nafas, manusia pasti mati. Oleh karena itu, manusia wajib memahami ke mana perginya nafas saat keluar dan di mana tempat bersemayamnya saat masuk ke dalam badan.</li>
+  </ul>
+  <p>Untuk memahami hal tersebut, manusia wajib menempuh empat tahapan ilmu: <span class="hl-pink">Syariat, Tarekat, Hakikat, dan Ma’rifat.</span> Ilmu Ma’rifat bertujuan mengenal tempat asal roh saat masih berada di alam Qadim (Qudratullah) agar kelak saat wafat memiliki tujuan pulang yang pasti (<i>Inna lillahi wa inna ilaihi raji'un</i>), tidak tersesat atau gentayangan tanpa tempat, serta memiliki wadah yang sah untuk menampung seluruh amal ibadah selama di dunia.</p>`
+},
+{
+  t:"Empat Perkara Utama: Dimensi Batin",
+  k:"Bagian 3 • Dimensi Dalam (Hakikat)",
+  h:"Empat Perkara Utama — Dimensi Dalam / Batin (Hakikat)",
+  c:LEGEND+`<p>Ketiga, pada <b>Dimensi Dalam atau Batin (Hakikat)</b>, makna keempat perkara tersebut adalah:</p>
+  <ul>
+    <li><b><span class="hl-gold">Dzatullah:</span></b> Adalah <b>Rasa</b> yang sejati.</li>
+    <li><b><span class="hl-green">Sifatullah:</span></b> Adalah <b>Nur Dzat</b> (cahaya yang terang benderang), yang juga disebut sebagai <i>Johar Awal</i>, <i>Hakikat Muhammad</i>, <i>Bahrul Hayat</i> (Lautan Hidup), atau <span class="hl-yellow">Sejatinya Syahadat</span>. Dalam lafaz Allah, Nur Dzat ini menjadi hakikat tanda <b>Tasydid ( ّ )</b>.</li>
+    <li><b><span class="hl-blue">Asma’ullah:</span></b> Adalah <b>Nur Muhammad</b>, yakni cahaya empat warna yang membentuk lafaz Asma Allah (<b>الله</b>), yang juga disebut <i>Bahrul Adam</i> (Lautan Adam) sebagai tempat kesempurnaan jasmani:
+      <ol>
+        <li><b>Narun</b> (<i>Nurul Ahmar</i> / Cahaya Merah) menjadi huruf <b>Alif (ا)</b></li>
+        <li><b>Hawaun</b> (<i>Nurul Ashfar</i> / Cahaya Kuning) menjadi huruf <b>Lam (ل)</b></li>
+        <li><b>Maun</b> (<i>Nurul Abyadh</i> / Cahaya Putih) menjadi huruf <b>Lam (ل)</b></li>
+        <li><b>Turabun</b> (<i>Nurul Aswad</i> / Cahaya Hitam) menjadi huruf <b>Ha (ه)</b></li>
+      </ol>
+    </li>
+    <li><b><span class="hl-pink">Af’alullah:</span></b> Adalah <b>penglihatan batin di dalam qalbu (mata hati)</b> pada saat mengalami <i>Tajalli</i> (penyingkapan spiritual).</li>
+  </ul>`
+},
+{
+  t:"Al-Awwalu Wal Akhiru & Khataman Nabiyyin",
+  k:"Bagian 4 • Kedudukan Nabi Muhammad SAW",
+  h:"Makna Nabi Muhammad SAW sebagai Al-Awwalu Wal Akhiru dan Khataman Nabiyyin",
+  c:LEGEND+`<p>Nabi Muhammad SAW sering disebut sebagai <span class="hl-gold">Al-Awwalu Wal Akhiru</span> (Yang Paling Awal dan Yang Paling Akhir) serta <span class="hl-pink">Khataman Nabiyyin</span> (Nabi Penutup). Pemahaman ini mencakup dimensi batin dan lahir:</p>
+  <ul>
+    <li><b><span class="hl-green">Secara Batin (Hakikat):</span></b> <i>Nur Dzat</i>, <i>Nurullah</i>, <i>Johar Awal</i>, atau <i>Hakikat Muhammad</i> merupakan <i>Bahrul Hayat</i> (Lautan Hidup) yang menjadi bibit terciptanya tujuh lapis langit dan tujuh lapis bumi. Allah dan Muhammad tidak terpisahkan, ibarat <b>panas dan nyala api</b> yang menyatu (<i>manunggal</i>). Tidak ada nyala tanpa panas, dan tidak ada panas tanpa sifat api. Itulah sebabnya hakikat beliau disebut sebagai <b>Yang Paling Awal</b>.</li>
+    <li><b><span class="hl-blue">Secara Lahir (Syariat):</span></b> Ketika Nabi Adam dan Siti Hawa bertemu, keturunan lahir karena adanya pertemuan Rasa (hakikat Rasulullah) yang mengeluarkan mani (hakikat Adam sebagai sorot dari Nur Dzat). Mani tersebut kemudian berproses membentuk wujud manusia yang menyusun lafaz <span class="hl-yellow">Muhammad (محمد)</span>: <b>Kepala</b> membentuk huruf <b>Mim Awal (م)</b>, <b>Dada</b> membentuk huruf <b>Ha (ح)</b>, <b>Pusar</b> membentuk huruf <b>Mim Akhir (م)</b>, dan <b>Kaki</b> membentuk huruf <b>Dal (د)</b>. Dengan demikian, Muhammad adalah <b>Awal</b> dari alam Nur dan Rasa, sekaligus <b>Akhir</b> (penutup) karena menjadi wujud badan yang membungkus Nur dan Rasa tersebut.</li>
+    <li><b><span class="hl-pink">Makna Nabi Penutup (Khataman Nabiyyin):</span></b> Pertama, beliau adalah penutup pangkat kenabian sehingga tidak akan ada nabi lagi setelahnya. Kedua, beliau adalah penutup kesempurnaan ilmu agama yang telah menuntaskan seluruh tingkatan—<b>Syariat, Tarekat, Hakikat, dan Ma’rifat</b>—hingga mencapai ma’rifat sempurna kepada Dzat dan Sifat Allah.</li>
+  </ul>`
+},
+{
+  t:"Hakikat Enam Rasul Utama dalam Diri",
+  k:"Bagian 5 • Enam Rasul Utama",
+  h:"Hakikat Enam Rasul Utama dalam Diri Manusia",
+  c:LEGEND+`<p>Secara syariat, para rasul adalah utusan Allah yang membimbing umat pada zamannya masing-masing. Jasmani (<i>majaji</i>) mereka telah wafat sebagaimana manusia biasa, namun hakikat rasul—yakni <span class="hl-gold">Rasa</span>—bersifat langgeng dan terus hidup berhimpun di dalam diri manusia yang masih bernyawa.</p>
+  <p>Berikut adalah kenyataan enam rasul utama di dalam diri manusia:</p>
+  <ol>
+    <li><b><span class="hl-gold">Nabi Adam Khalifatullah:</span></b> Wujud atau postur tubuh dari ujung kepala hingga telapak kaki sebagai wakil Allah untuk menurunkan umat manusia.</li>
+    <li><b><span class="hl-blue">Nabi Nuh Habibullah:</span></b> Daya pendengaran.</li>
+    <li><b><span class="hl-green">Nabi Ibrahim Khalilullah:</span></b> Daya penglihatan.</li>
+    <li><b><span class="hl-orange">Nabi Musa Kalamullah:</span></b> Daya ucapan.</li>
+    <li><b><span class="hl-yellow">Nabi Isa Ruhullah:</span></b> Daya penciuman.</li>
+    <li><b><span class="hl-pink">Nabi Muhammad Rasulullah:</span></b> <b>Rasa seluruh wujud</b> yang menjadi penghulu bagi seluruh indra (rasa pendengaran, penglihatan, ucapan, penciuman, dan gerak seluruh tubuh).</li>
+  </ol>
+  <p>Rasa tersebut dikuatkan oleh <b>Hidup</b>. Susunan penguasaannya adalah: <span class="hl-gold">Hidup</span> meliputi <span class="hl-pink">Rasa</span>, <span class="hl-pink">Rasa</span> meliputi <span class="hl-blue">Wujud</span>, dan <span class="hl-blue">Wujud</span> meliputi <span class="hl-orange">Keinginan (Nafsu)</span> yang terbagi menjadi empat macam: <i>Amarah, Lawamah, Sawiyah,</i> dan <i>Mutmainah</i>.</p>`
+},
+{
+  t:"Empat Tingkatan Muhammad & Hak Tiga Perkara",
+  k:"Bagian 6 • Gelar Muhammad & Tiga Hak",
+  h:"Empat Tingkatan Gelar Muhammad & Hak Tiga Perkara",
+  c:LEGEND+`<h3>1. Empat Tingkatan Gelar Muhammad</h3>
+  <ul>
+    <li><b><span class="hl-gold">Muhammad Haq:</span></b> Gulungan Dzat dan Sifat yang berwujud cahaya terang benderang dan jernih.</li>
+    <li><b><span class="hl-blue">Muhammad Hakiki:</span></b> Sorot Dzat dan Sifat yang memancarkan cahaya empat warna pembentuk lafaz Muhammad (<b>محمد</b>): <i>Narun</i> (Merah/Mim), <i>Hawaun</i> (Kuning/Ha), <i>Maun</i> (Putih/Mim), dan <i>Turabun</i> (Hitam/Dal).</li>
+    <li><b><span class="hl-green">Muhammad Harid:</span></b> Rasa pribadi atau sifat rasa jasmani.</li>
+    <li><b><span class="hl-orange">Muhammad Majaji:</span></b> Rupa jasmani manusia yang tersusun dari kepala (Mim), dada (Ha), pusar (Mim), dan kaki (Dal). <i>(Adapun Nabi Muhammad SAW yang dimakamkan di Madinah adalah <b>Muhammad Pangkat</b>, yakni utusan pembawa risalah agama).</i></li>
+  </ul>
+  <h3>2. Hak Allah, Hak Muhammad, dan Hak Adam</h3>
+  <p>Ketiga hak ini saling bertautan dan tidak dapat dipisahkan untuk melahirkan pengetahuan sejati:</p>
+  <ul>
+    <li><b><span class="hl-gold">Hak Allah:</span></b> <b>Awas</b> (Maha Melihat dan Mengawasi).</li>
+    <li><b><span class="hl-pink">Hak Muhammad:</span></b> <b>Yang Mengawasi</b>.</li>
+    <li><b><span class="hl-blue">Hak Adam:</span></b> <b>Yang Diawasi</b>.</li>
+  </ul>
+  <p>Jika hanya ada sifat <i>Awas</i> tanpa <i>Yang Mengawasi</i>, tidak akan terbukti. Jika ada <i>Awas</i> dan <i>Yang Mengawasi</i> tanpa <i>Yang Diawasi</i>, tidak akan menjadi ilmu. Ketiganya menyatu dalam diri manusia sebagai <span class="hl-yellow">Hidup</span> (kenyataan adanya Allah), <span class="hl-pink">Rasa</span> (kenyataan adanya Muhammad), dan <span class="hl-blue">Wujud atau Postur Tubuh</span> (kenyataan adanya Adam).</p>`
+},
+{
+  t:"Makhluk & Khalik serta Sifat Rahman-Rahim",
+  k:"Bagian 7 • Makhluk-Khalik & Rahman-Rahim",
+  h:"Perbedaan Makhluk dan Khalik serta Hakikat Sifat Rahman dan Rahim",
+  c:LEGEND+`<h3>1. Perbedaan Makhluk dan Khalik</h3>
+  <ul>
+    <li><b><span class="hl-orange">Makhluk:</span></b> Segala sesuatu yang bersifat lahiriah (syariat) dan berwujud nyata di alam dunia, meliputi api, angin, air, tanah, manusia, hewan, tumbuhan, bahkan surga dan neraka.</li>
+    <li><b><span class="hl-blue">Khalik:</span></b> Bibit dunia, langit, dan bumi beserta seluruh isinya, yakni <b>Nur Muhammad</b> (cahaya empat warna) yang bersifat langgeng dan tidak terkena kerusakan.</li>
+  </ul>
+  <h3>2. Sifat Rahman (Maha Pemurah di Dunia) dan Sifat Rahim (Maha Penyayang di Akhirat)</h3>
+  <ul>
+    <li><b><span class="hl-gold">Sifat Rahman:</span></b> Kemurahan Allah di dunia diberikan secara merata kepada seluruh makhluk tanpa pilih kasih. Bentuknya adalah pemberian "modal" berupa anggota tubuh (tangan, kaki, mata, telinga, mulut, hidung, akal, dan budi) serta kelengkapan alam semesta (api, angin, air, tanah, matahari, bulan, dan bintang). Adapun perkara rezeki bergantung pada ikhtiar manusia dalam mengolah modal tersebut menggunakan ilmu. Sebagaimana ungkapan para leluhur: <i>"Manusia tanpa ilmu dan agama hidupnya akan tersesat, dan manusia tanpa seni hidupnya akan kasar."</i> Jika ingin makan nasi harus mau menggunakan akal untuk berpikir, jika ingin lauk harus mau mencangkul, dan jika ingin kaya harus terampil serta cakap.</li>
+  </ul>
+  <blockquote><i>Man thalaba syai'an jiddan wajadahu</i><br><b>Kaidah Hadis dalam Khazanah Ilmu</b><br>Artinya: <span class="hl-yellow">“Barang siapa bersungguh-sungguh dalam permintaannya, ia akan mendapatkannya.”</span></blockquote>
+  <ul>
+    <li><b><span class="hl-pink">Sifat Rahim:</span></b> Kasih sayang Allah di akhirat. Dalam diri manusia, "akhirat" adalah <b>Alam Rasa</b>. Segala makanan dan keadaan dari darat maupun air—manis, asin, pahit, pedas—semuanya bermuara pada <b>Rasa</b> yang tidak pernah terpisah dari <b>Hidup</b>.</li>
+  </ul>`
+},
+{
+  t:"Perumpamaan Hidayah, Darajat, Nikmat, Rahmat",
+  k:"Bagian 7 • Hidayah, Darajat, Nikmat, Rahmat",
+  h:"Perumpamaan Hidayah, Darajat, Nikmat, dan Rahmat",
+  c:LEGEND+`<p>Untuk memahami keempat istilah ini, bayangkan seseorang yang bekerja di sawah sejak pagi. Di tengah hari ia merasa lapar dan haus, lalu pulang ke rumah namun rumahnya terkunci karena penghuninya sedang bepergian. Ia kemudian berjalan menuju rumah kerabatnya:</p>
+  <ul>
+    <li><b><span class="hl-gold">Hidayah:</span></b> Saat tiba di rumah kerabat dan kebetulan tuan rumah ada di tempat, ia merasa lega dan bersyukur karena mendapat jalan keluar.</li>
+    <li><b><span class="hl-green">Darajat:</span></b> Ketika melihat hidangan makanan sudah tersedia di meja saat ia sedang lapar dan haus, itulah derajat kemuliaan rezeki.</li>
+    <li><b><span class="hl-blue">Nikmat:</span></b> Ketika ia menyantap makanan tersebut dengan lahap dan merasakan kelezatannya.</li>
+    <li><b><span class="hl-pink">Rahmat:</span></b> Setelah makan kenyang, tubuh biasanya terasa lemas dan mengantuk akibat kekenyangan. Hal ini terjadi karena sari pati (<i>roh</i>) makanan belum hancur sepenuhnya. Setelah makanan dicerna, ampasnya terbuang sementara sari patinya berubah menjadi <b>darah</b>. Pertemuan antara <b>Roh makanan</b> dengan <b>Roh jasmani</b> inilah yang melahirkan <b>Rahmat</b>. Dari Rahmat muncul tenaga ke seluruh tubuh, penglihatan menjadi terang, pendengaran jelas, dan suara lantang.</li>
+  </ul>
+  <p>Oleh karena itu, manusia <span class="hl-orange">wajib menjaga kehalalan makanan.</span> Makanan yang berasal dari harta haram atau merampas hak orang lain akan merusak tubuh, memicu penyakit, membangkitkan nafsu jahat, dan berbalik mencelakakan diri sendiri.</p>`
+},
+{
+  t:"Pedoman Hukum & Kaidah Susunan Serba Empat",
+  k:"Bagian 8 • Pedoman & Susunan Serba Empat",
+  h:"Pedoman Hukum Agama dan Uraian Kaidah Susunan Serba Empat",
+  c:LEGEND+`<p>Dalam beragama, umat Islam berpegang pada empat pedoman: <span class="hl-gold">Dalil, Hadis, Ijma, dan Qiyas.</span> <b>Dalil, Hadis, dan Ijma</b> diibaratkan seperti <b>papan penunjuk jalan</b> menuju Jakarta di sebuah persimpangan. Sedangkan <b>Qiyas dan Tarekat</b> adalah <b>ikhtiar atau kendaraannya</b> (berjalan kaki, sepeda, motor, atau mobil). Jika seseorang hanya berdiri membaca tulisan di papan penunjuk jalan tanpa mencari kendaraan untuk menempuh jalannya, ia tidak akan pernah sampai ke tujuan (Ma’rifatullah).</p>
+  <p>Seluruh tatanan keilmuan ini tersusun secara harmonis dalam <b>Kaidah Susunan Serba Empat</b>, yang merangkum setiap aspek ketuhanan, kenabian, alam semesta, dan diri manusia dalam enam susunan berurutan:</p>
+  <ol>
+    <li><b><span class="hl-gold">Susunan Rukun dan Kitab Agama:</span></b> Rukun Agama terdiri dari empat tingkatan (<i>Syariat, Tarekat, Hakikat, Ma'rifat</i>), Ilmu Ketauhidan memiliki empat landasan (<i>Iman, Tauhid, Ma'rifat, Islam</i>), Kitab Allah berjumlah empat (<i>Taurat, Zabur, Injil, Al-Qur'an</i>), dan Al-Qur'an memiliki empat julukan agung (<i>Qur'anul Majid, Qur'anul Karim, Qur'anul Hakim, Qur'anul Adzim</i>).</li>
+    <li><b><span class="hl-green">Susunan Lafaz dan Martabat Ketuhanan:</span></b> Lafaz Allah terdiri dari empat huruf (<b>Alif, Lam Awal, Lam Akhir, Ha</b>), yang selaras dengan empat martabat ketuhanan (<b>Dzat, Sifat, Asma, Af'al</b>) serta empat sifat keagungan-Nya (<b>Jalal, Jamal, Qahar, Kamal</b>).</li>
+    <li><b><span class="hl-blue">Susunan Malaikat dan Huruf Kunci:</span></b> Terdapat empat koordinator malaikat utama (<b>Jibril, Mikail, Israfil, Izrail</b>), yang bersesuaian dengan empat huruf kunci (<b>Alif, Ha, Mim, Dal</b>).</li>
+    <li><b><span class="hl-pink">Susunan Kenabian dan Sahabat Utama:</span></b> Lafaz Muhammad tersusun dari empat huruf (<b>Mim, Ha, Mim, Dal</b>), selaras dengan empat sifat wajib Rasul (<b>Shiddiq, Amanah, Tabligh, Fathanah</b>) dan empat sahabat utama Nabi (<b>Abu Bakar Ash-Shiddiq, Umar, Utsman, Ali</b>).</li>
+    <li><b><span class="hl-yellow">Susunan Tingkatan Alam dan Anasir Diri:</span></b> Alam terbagi dalam empat tingkatan (<b>Alam Ruh, Alam Mitsal, Alam Ajsam, Alam Insan</b>), yang sejajar dengan empat anasir batin dalam diri manusia (<b>Rahasia/Rasa, Nyawa, Hati, Jasad</b>) serta empat daya jiwa (<b>Rasa, Akal, Daya, Nafsu</b>).</li>
+    <li><b><span class="hl-orange">Susunan Kelahiran, Cairan Tubuh, Unsur Alam, dan Makhluk:</span></b> Dalam proses kelahiran manusia terdapat empat saudara batin (<b>Tubaniah, Tambuniah, Uriah, Camariah</b>), dalam tubuh terdapat empat saripati cairan (<b>Mani, Maningkem, Madi, Wadi/Mazi</b>), di alam semesta terdapat empat unsur pokok (<b>Hawa/Angin, Air, Api, Tanah</b>), dan seluruh ciptaan yang berakal terbagi menjadi empat golongan makhluk (<b>Malaikat, Jin, Setan, Manusia</b>).</li>
+  </ol>`
+},
+{
+  t:"Hakikat Puji & Empat Pembagian Puji",
+  k:"Bagian 9 • Hakikat Puji (Alhamdulillah)",
+  h:"Hakikat Puji (Alhamdulillah) dan Empat Pembagian Puji",
+  c:LEGEND+`<p>Dalam Al-Qur'an disebutkan <i>Alhamdulillahi Rabbil 'Alamin</i> (Segala puji hanya milik Allah). Secara lisan, dzikir adalah pujian makhluk untuk memohon ampunan kepada Allah. Namun secara hakikat, <span class="hl-gold">Puji Allah yang sejati adalah wujud pribadi manusia yang telah mencapai Ma’rifat.</span></p>
+  <p>Bagi orang yang belum ma’rifat, kalimat <i>La haula wa la quwwata illa billah</i> hanya sebatas pengakuan di bibir tanpa dirasakan oleh hati, bahkan berisiko menganggap roh pribadinya sebagai Tuhan. Sebaliknya, bagi yang telah ma’rifat, seluruh jasmani maupun rohnya fana dalam <i>La haula wa la quwwata</i>; ia merasa tidak memiliki daya upaya melainkan semata-mata digerakkan oleh Qudrat dan Iradat Allah. Pada tahap inilah penglihatan, pendengaran, ucapan, dan amalnya telah <span class="hl-pink">Sah Dzat-nya, Sah Sifat-nya, Sah Asma-nya, dan Sah Af’al-nya.</span></p>
+  <p>Puji tersebut terbagi menjadi empat tingkatan:</p>
+  <ol>
+    <li><b><span class="hl-gold">Puji Hadis ‘alal Hadis:</span></b> Pujian sesuatu yang baru kepada yang baru, yakni saat manusia <b>membaca Al-Qur’an</b> (suara manusia dan huruf-huruf Al-Qur'an sama-sama bersifat baru/<i>hadis</i>).</li>
+    <li><b><span class="hl-green">Puji Hadis ‘alal Qadim:</span></b> Pujian sesuatu yang baru kepada Yang Qadim, yakni saat melaksanakan <b>Salat</b>—wujud tubuh yang baru (berdiri, rukuk, sujud, duduk) memuji kepada Yang Qadim (Nur Muhammad).</li>
+    <li><b><span class="hl-blue">Puji Qadim ‘alal Qadim:</span></b> Pujian Yang Qadim kepada Yang Qadim, yakni saat berada dalam <b>Salat Sejati (Tajalli)</b>, di mana yang memuji dan yang dipuji sama-sama gaib tanpa menggunakan suara mulut.</li>
+    <li><b><span class="hl-pink">Puji Qadim ‘alal Hadis:</span></b> Pujian Yang Qadim kepada yang baru, yakni pujian Allah kepada hamba yang ibadahnya telah disertai ilmu ma’rifat sehingga setiap gerak-geriknya senantiasa dalam keadaan <b>ingat dan sadar kepada Allah</b>.</li>
+  </ol>`
+},
+{
+  t:"Masuknya Nyawa & Empat Sari Pati Makanan",
+  k:"Bagian 10 • Proses Nyawa & Empat Nafsu",
+  h:"Proses Pemberian Nyawa dan Pengaruh Sari Pati Makanan",
+  c:LEGEND+`<h3>1. Masuknya Nyawa ke dalam Jasad</h3>
+  <p>Ketika bayi masih berada di dalam kandungan ibu, yang ada barulah <span class="hl-gold">Hidup</span> (Roh Suci yang sifatnya cahaya). Bayi sudah bisa bergerak, namun belum memiliki nafas, nyawa, nafsu, maupun fungsi pancaindra. Begitu lahir ke alam dunia dan bersentuhan dengan hawa luar, bayi menangis keras karena merasakan dingin. Pada detik itulah masuk <span class="hl-blue">Nafas</span> yang bernama <span class="hl-pink">Nyawa</span> (hakikatnya adalah Rasa Jasmani yang sifatnya darah), dan indra yang pertama kali berfungsi adalah penciuman (hidung).</p>
+  <h3>2. Pengaruh Sari Pati Makanan terhadap Empat Darah dan Empat Nafsu</h3>
+  <p>Setelah bayi meminum air susu atau mengonsumsi makanan, sari pati makanan yang mengandung roh empat unsur alam (<i>Roh Nabati</i> dan <i>Roh Hewani</i>) berubah menjadi <b>empat jenis darah</b> yang membentuk struktur tubuh, pancaindra, dan empat watak nafsu:</p>
+  <ol>
+    <li><b><span class="hl-orange">Sari Pati Api:</span></b> Menjadi <b>Darah Merah</b>, lalu menjadi <b>Wadi</b>, dan membentuk <b>Daging</b>. Hawanya memfungsikan <b>Telinga</b> (pendengaran) dan melahirkan <b>Nafsu Amarah</b> (watak pemarah, dengki, iri hati, kasar, suka menganiaya) yang berpusat di <b>empedu</b> dan keluar melalui telinga.</li>
+    <li><b><span class="hl-yellow">Sari Pati Angin:</span></b> Menjadi <b>Darah Kuning</b>, lalu menjadi <b>Madi</b>, dan membentuk <b>Sumsum</b>. Hawanya memfungsikan <b>Mulut</b> (ucapan) dan melahirkan <b>Nafsu Lawamah</b> (watak serakah, mudah lapar, haus, mengantuk, malas, suka memfitnah) yang berpusat di <b>perut</b> dan keluar melalui mulut.</li>
+    <li><b><span class="hl-blue">Sari Pati Air:</span></b> Menjadi <b>Darah Putih</b>, lalu menjadi <b>Mani</b>, dan membentuk <b>Tulang</b>. Hawanya memfungsikan <b>Mata</b> (penglihatan) dan melahirkan <b>Nafsu Sawiyah</b> (watak banyak keinginan, mengejar kesenangan duniawi, ingin dipuji, kikir, birahi) yang berpusat di <b>limpa</b> dan keluar melalui mata.</li>
+    <li><b><span class="hl-green">Sari Pati Tanah:</span></b> Menjadi <b>Darah Hitam</b>, lalu menjadi <b>Maningkem</b>, dan membentuk <b>Kulit</b>. Hawanya memfungsikan <b>Hidung</b> (penciuman) dan melahirkan <b>Nafsu Mutmainah</b> (watak mencintai kebaikan, gemar bertirakat, salat malam, dermawan, mengutamakan kepentingan orang banyak) yang berpusat di <b>tulang</b> dan keluar melalui hidung.</li>
+  </ol>`
+},
+{
+  t:"Benteng Nafsu & Alur Perjalanan Nafas",
+  k:"Bagian 10 • Benteng Nafsu & Tingkatan Nafas",
+  h:"Mengendalikan Nafsu & Alur Munculnya Nafas dan Suara",
+  c:LEGEND+`<p>Agar <i>Nafsu Mutmainah</i> tidak kalah dan terseret oleh tiga nafsu lainnya, manusia harus berlindung dalam ma’rifat hingga mencapai kesadaran <span class="hl-pink">Wa Huwa Ma’akum</span> (Allah senantiasa menyertai siang dan malam), sehingga timbul rasa malu dan takut untuk berbuat keburukan.</p>
+  <h3>Proses Munculnya Nafas dan Suara dari Nafsu</h3>
+  <p>Ketika seseorang dikuasai nafsu (misalnya amarah), nafasnya tampak memburu dan wajahnya memerah. Prosesnya berjalan secara berurutan:</p>
+  <ul>
+    <li>Nafsu dititipkan ke <span class="hl-gold">Otak</span>, lalu turun ke <span class="hl-green">Hati/Qalbu</span> melahirkan Cipta dan Akal.</li>
+    <li>Bersemayam di <span class="hl-blue">Jantung</span> menjadi <b>Nufus</b>, lalu kembali ke <span class="hl-green">Hati</span> menjadi <b>Anfas</b>.</li>
+    <li>Menyatu dengan <span class="hl-orange">Darah</span> menjadi <b>Tanafas</b>, lalu masuk ke <span class="hl-pink">selaput rongga dada (jantung)</span> menjadi <b>Nafas</b>.</li>
+    <li>Menyebar ke seluruh tubuh hingga akhirnya keluar menjadi <span class="hl-yellow">Suara</span>.</li>
+  </ul>`
+},
+{
+  t:"Ringkasan Asmaul Husna & Paham Wujudiyah",
+  k:"Bagian 11 • Asmaul Husna & Julukan Agung",
+  h:"Ringkasan Asmaul Husna, Kekeliruan Paham Wujudiyah, dan Empat Julukan Agung",
+  c:LEGEND+`<h3>1. Lima Ringkasan Asmaul Husna dan Kesalahan Pemaknaannya</h3>
+  <p>Sebanyak 99 (atau 100) Asmaul Husna pada intinya diringkas menjadi <b>lima kategori</b>: <i>Asmaul Dzat, Asmaul Sifat, Asmaul Asma, Asmaul Af’al,</i> dan <i>Asmaul Jinsi</i>. Banyak orang terjerumus ke dalam kekufuran (<span class="hl-orange">paham Wujudiyah</span>) karena salah menempatkan makna keempat asma pertama pada wujud dirinya yang bersifat baru:</p>
+  <ul>
+    <li><b>Salah Memaknai Asmaul Dzat:</b> Mengaku bahwa jasad kasarnya adalah Dzat Allah karena salah menafsirkan hadis <i>"Wallahu batinul insan, al-insanu dhahirullah"</i> dan <i>"Wallahu ghaibun, al-insanu ghaibun"</i>. Padahal, Dzat Allah itu <i>Laisa kamitslihi syai'un</i> (tidak berbentuk dan gaib), sedangkan badan kasar ini tampak nyata sehingga bukan gaib.</li>
+    <li><b>Salah Memaknai Asmaul Sifat:</b> Menganggap rupa wajahnya sendiri adalah Sifat Allah karena merasa wajahnya tunggal dan tidak ada duanya di dunia.</li>
+    <li><b>Salah Memaknai Asmaul Asma:</b> Menerapkan nama Allah kepada nama dirinya sendiri, yang berarti memperbanyak dan menyamakan nama Tuhan dengan makhluk.</li>
+    <li><b>Salah Memaknai Asmaul Af’al:</b> Mengaku bahwa seluruh perbuatan dirinya—baik maupun buruk—adalah perbuatan (<i>Af’al</i>) Allah semata karena salah memahami dalil <i>La haula wa la quwwata</i>. Jika demikian, fungsi agama, nabi, dan kitab suci menjadi sia-sia. Yang benar adalah segala perbuatan kita <i>diliputi</i> oleh Af’al, Qudrat, dan Iradat Allah. <i>(Adapun <b>Asmaul Jinsi</b> merupakan intisari rahasia para wali yang hanya dibahas bagi mereka yang sudah matang ilmunya).</i></li>
+  </ul>
+  <h3>2. Kenyataan Empat Julukan Allah dalam Diri</h3>
+  <ul>
+    <li><b><span class="hl-gold">Maha Agung:</span></b> Nyatanya pada <b>Ucapan</b>, karena tujuh lapis langit, bumi, bahkan Asma Allah sekalipun dilisankan melalui ucapan.</li>
+    <li><b><span class="hl-green">Maha Mulia:</span></b> Nyatanya pada <b>Pendengaran</b>, karena daya dengar tidak pernah sakit (yang sakit hanyalah daun atau organ telinganya).</li>
+    <li><b><span class="hl-blue">Maha Luhur:</span></b> Nyatanya pada <b>Penglihatan</b>, karena langit yang demikian tinggi tanpa batas mampu dijangkau oleh pandangan mata.</li>
+    <li><b><span class="hl-pink">Maha Suci:</span></b> Nyatanya pada <b>Penciuman (Nafas)</b>, karena nafas tidak pernah kotor atau berdebu meski tidak pernah dicuci.</li>
+  </ul>`
+},
+{
+  t:"Keesaan Hidup Yang Maha Suci",
+  k:"Bagian 12 • Keesaan Hidup",
+  h:"Keesaan Hidup Yang Maha Suci & Dua Perumpamaan",
+  c:LEGEND+`<p><span class="hl-gold">Hidup Yang Maha Suci</span> (Nur Dzat / Sagara Hirup) berjumlah <b>satu</b> dan bersifat langgeng. Adapun yang jumlahnya banyak pada manusia dan hewan adalah <span class="hl-blue">Nyawa</span>, yakni sorotan dari Hidup Yang Maha Suci yang telah bergulung dengan nafas dan rasa.</p>
+  <p>Agar tidak keliru menyangka bahwa Hidup Yang Maha Suci berkurang karena terbagi ke miliaran makhluk, perhatikan dua perumpamaan berikut:</p>
+  <ul>
+    <li><b><span class="hl-green">Analogi Lampu Petromaks dan Ayakan:</span></b> Bayangkan sebuah lampu petromaks yang menyala terang dikurung oleh sebuah ayakan besar yang memiliki ribuan lubang. Sinar yang menembus setiap lubang ibarat nyawa pada setiap manusia.</li>
+    <li><b><span class="hl-orange">Analogi Menyulut Rokok:</span></b> Meskipun api pada lampu petromaks tersebut digunakan untuk menyulut jutaan batang rokok, api utama di dalam petromaks tidak akan pernah berkurang sedikit pun. Demikianlah Sagara Hirup Allah tetap utuh dan langgeng.</li>
+  </ul>`
+},
+{
+  t:"Keselarasan Jagat Kabir dan Jagat Sagir",
+  k:"Bagian 12 • Jagat Kabir & Jagat Sagir",
+  h:"Perbandingan Jagat Kabir (Alam Semesta) dan Jagat Sagir (Diri Manusia)",
+  c:LEGEND+`<p>Sebagaimana keterangan hadis, keadaan alam semesta (<span class="hl-gold">Jagat Kabir</span>) memiliki kesamaan struktur yang persis dengan wujud diri manusia (<span class="hl-pink">Jagat Sagir</span>):</p>
+  <ul>
+    <li><b><span class="hl-gold">Siang dan Malam:</span></b> Di alam semesta terdapat pergantian siang dan malam, sedangkan di dalam diri manusia terdapat keadaan <b>terjaga</b> sebagai bandingan siang dan <b>tidur</b> sebagai bandingan malam.</li>
+    <li><b><span class="hl-green">Tujuh Hari dan Lima Ketetapan Utama:</span></b> Tujuh hari di alam semesta tergambar pada <b>tujuh lubang di wajah manusia</b>, yakni dua lubang telinga, dua mata, dua lubang hidung, dan satu mulut. Sementara itu, lima ketetapan utama adalah isi dari ketujuh lubang tersebut, yaitu <b>pendengaran, penglihatan, penciuman, ucapan</b>, serta <b>Rasa</b> yang meliputi keempatnya.</li>
+    <li><b><span class="hl-blue">Dua Belas Bulan dalam Setahun:</span></b> Satu tahun yang terdiri dari 12 bulan memiliki kenyataan pada <b>12 persendian utama</b> di tubuh manusia, yakni 6 persendian pada kedua tangan (masing-masing tangan 3 sendi) dan 6 persendian pada kedua kaki (masing-masing kaki 3 sendi).</li>
+    <li><b><span class="hl-yellow">Tiga Puluh Hari dalam Sebulan:</span></b> Satu bulan yang berjumlah 30 hari tergambar pada <b>30 ruas jari tangan</b> (sebagai perumpamaan 30 siang) dan <b>30 ruas jari kaki</b> (sebagai perumpamaan 30 malam).</li>
+    <li><b><span class="hl-orange">Satu Windu (Delapan Tahun):</span></b> Hitungan satu windu yang lamanya 8 tahun memiliki kenyataan pada <b>8 ruas tulang</b> di antara persendian tubuh, yakni 4 ruas tulang pada kedua tangan (masing-masing tangan 2 ruas) dan 4 ruas tulang pada kedua kaki (2 tulang paha dan 2 tulang betis).</li>
+    <li><b><span class="hl-pink">Matahari, Bulan, Bintang, serta Hawa Panas dan Hangat:</span></b> Di alam semesta, matahari, bulan, dan bintang menjadi sumber kehidupan segala makhluk. Di dalam diri manusia, kenyataannya adalah <b>Hidup</b> yang menggerakkan jasad (bersifat gaib/hakikat), disertai <b>empat unsur tubuh</b>—Daging, Sumsum, Tulang, dan Kulit—yang memancarkan hawa menjadi empat nafsu (<i>Amarah, Lawamah, Sawiyah,</i> dan <i>Mutmainah</i>).</li>
+  </ul>`
+},
+{
+  t:"Sifat Langgeng & Sejatinya Manusia",
+  k:"Bagian 13 • Sifat Langgeng & Sejatinya Manusia",
+  h:"Sifat Langgeng dan Jalan Mengenal Sejatinya Manusia",
+  c:LEGEND+`<h3>1. Yang Langgeng pada Allah dan pada Manusia</h3>
+  <ul>
+    <li><b><span class="hl-gold">Yang Langgeng pada Allah:</span></b> Adalah <b>Qudrat</b> (Kekuasaan-Nya) dan <b>Iradat</b> (Kehendak-Nya) yang tidak pernah terputus sejak sebelum alam semesta ada hingga akhirat kelak.</li>
+    <li><b><span class="hl-orange">Yang Langgeng pada Manusia:</span></b> Adalah <b>kebodohan atau ketidaktahuannya</b>. Manusia tidak tahu dari mana asalnya sebelum turun ke dunia, tidak ingat keadaannya selama sembilan bulan di dalam kandungan, tidak sadar proses kelahirannya, serta tidak mengetahui bagaimana jasad, rasa, dan pancaindranya tumbuh besar. Manusia benar-benar lemah bagaikan ranting kering di hadapan Allah.</li>
+  </ul>
+  <h3>2. Mengenal Sejatinya Manusia (Gaibnya Manusia)</h3>
+  <p>Secara fisik, wujud manusia sejati adalah <b>Nabi Muhammad SAW</b>. Namun secara hakikat, setiap manusia memiliki <b>Gaibnya Manusia (<span class="hl-pink">Sejatinya Manusia</span>)</b> yang hanya dapat ditemukan melalui ilmu dan laku tarekat:</p>
+  <ul>
+    <li><b><span class="hl-green">Analogi Buah Pisang dan Kacang Tanah:</span></b> Ketika seseorang memakan pisang, yang dicari bukanlah wujud pisangnya, melainkan <b>rasa manisnya</b> yang gaib (ada tetapi tidak berwujud). Rasa manis itu—atau <i>sejatinya pisang</i>—tidak akan pernah ditemukan jika pisang hanya didiamkan utuh; wujud pisangnya harus dirusak dan dikunyah hingga lembut barulah manisnya terasa. Begitu pula kacang tanah harus diperas hingga hancur wujudnya agar keluar minyaknya.</li>
+    <li><b><span class="hl-blue">Cara Membongkar Wujud Jasmani:</span></b> Untuk menemukan <i>Sejatinya Manusia</i>, seseorang harus "merusak" keakuan wujud jasmaninya melalui laku tarekat yang berlandaskan dalil <b>Antal Mautu Qablal Mautu</b> (matikan dirimu sebelum engkau mati). Caranya adalah dengan menghadirkan rasa <b>kosong dan hening (fana)</b>, tidak merasa memiliki raga maupun dunia karena seluruh perhatian terpusat khusyuk kepada Yang Maha Agung saat melaksanakan <b>Tajalli</b> (salat kerohanian). Penglihatan batin yang menyaksikan di dalam Tajalli itulah yang disebut <span class="hl-pink">Sejatinya Manusia.</span></li>
+  </ul>
+  <p>Sebagai muara dari seluruh pemahaman ini, kunci keselamatan dunia dan akhirat terletak pada kesungguhan menjalankan ibadah yang selaras antara <span class="hl-gold">Hablumminallah</span> (hubungan vertikal dengan Allah) dan <span class="hl-green">Hablumminannas</span> (hubungan horizontal dengan sesama manusia), yang senantiasa dilandasi oleh <span class="hl-yellow">kebersihan qalbu atau hati.</span></p>`
+},
+{
+  t:"Penutup & Terima Kasih",
+  k:"Penutup • Kesimpulan Kitab Tiga",
+  h:"Penutup & Terima Kasih (Kitab Tiga)",
+  c:LEGEND+`<p>Alhamdulillah, demikianlah uraian lengkap dari <span class="hl-gold">Kitab Tiga</span> mengenai hakikat <i>Dzatullah, Sifatullah, Asma’ullah, dan Af’alullah</i>, kedudukan Nabi Muhammad SAW dan enam rasul utama di dalam diri, Kaidah Susunan Serba Empat, keselarasan antara Jagat Kabir dan Jagat Sagir, hingga jalan mengenal <span class="hl-pink">Sejatinya Manusia</span> yang dapat kita renungkan bersama hari ini.</p>
+  <p>Terima kasih banyak atas perhatian, waktu, dan kelapangan hati <span class="hl-yellow">Saudaraku</span> yang telah setia menyimak dari awal hingga akhir.</p>
+  <p>Sebagaimana harapan kita di awal tadi, semoga setelah menyelesaikan pembahasan <b>Kitab Tiga</b> ini, kita tidak pulang dengan tangan kosong. Semoga kita pulang membawa bekal kesadaran baru dan membawa perubahan nyata: <span class="hl-green">pulang menjadi pribadi yang lebih tenang hatinya, lebih sabar menghadapi ujian, lebih bijak menundukkan hawa nafsu, lebih peduli kepada sesama melalui keselarasan hablumminallah dan hablumminannas, serta semakin merasa dekat dengan Allah SWT di setiap helaan napas kita.</span></p>
+  <p>Semoga Allah senantiasa menjaga kesehatan kita, menjernihkan mata hati kita, dan membimbing langkah kita hingga kelak kita dipanggil pulang dalam keadaan selamat dan sempurna. Mohon maaf apabila terdapat kekhilafan dalam penyampaian kata maupun penjelasan.</p>
+  <p>Saya <b>Deka Sonjaya</b>, undur diri.</p>
+  <blockquote><i>Wabillahi taufiq wal hidayah, wassalamu’alaikum warahmatullahi wabarakatuh.</i></blockquote>`
+}
+];
+
+const opening=document.getElementById('opening'), main=document.getElementById('main'), wrap=document.getElementById('slideWrap'), toc=document.getElementById('toc'), tocList=document.getElementById('tocList');
+const audio=document.getElementById('audio'), seek=document.getElementById('seek'), curTime=document.getElementById('curTime'), durTime=document.getElementById('durTime'), playBtn=document.getElementById('playBtn'), prevBtn=document.getElementById('prevBtn'), nextBtn=document.getElementById('nextBtn'), speedBtn=document.getElementById('speedBtn'), progressBar=document.getElementById('progressBar'), slideKicker=document.getElementById('slideKicker'), slideCount=document.getElementById('slideCount'), audioLabel=document.getElementById('audioLabel');
+let idx=0, speeds=[1,1.25,1.5,2], speedIdx=0, isSeeking=false;
+
+slides.forEach((s,i)=>{
+  const el=document.createElement('article'); el.className='slide'+(i===0?' active':''); el.dataset.i=i;
+  el.innerHTML=`<div class="slide-img-box"><img src="slide${i+1}.jpg" alt="Slide ${i+1}" onerror="if(this.dataset.triedBg){this.style.display='none';}else{this.dataset.triedBg='1';this.src='background.jpg';}"><div class="slide-img-badge">Slide ${i+1} • ${s.t}</div></div><div class="slide-text"><h2>${s.h}</h2>${s.c}</div>`;
+  wrap.appendChild(el);
+  const b=document.createElement('button'); b.className='toc-item'+(i===0?' active':''); b.innerHTML=`<span class="toc-num">${i+1}</span><span>${s.t}<small>${s.k}</small></span>`;
+  b.onclick=()=>{closeToc(); goTo(i,true);};
+  tocList.appendChild(b);
+});
+
+const slideEls=[...wrap.querySelectorAll('.slide')], tocItems=[...tocList.querySelectorAll('.toc-item')];
+function fmt(s){ if(!isFinite(s)) return '0:00'; s=Math.floor(s); return Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); }
+function render(){ slideEls.forEach((el,i)=>el.classList.toggle('active',i===idx)); tocItems.forEach((el,i)=>el.classList.toggle('active',i===idx)); slideKicker.textContent=slides[idx].k; slideCount.textContent=(idx+1)+' / '+slides.length; progressBar.style.width=((idx+1)/slides.length*100)+'%'; prevBtn.disabled=idx===0; nextBtn.disabled=idx===slides.length-1; const txt=wrap.querySelector('.slide.active .slide-text'); if(txt) txt.scrollTop=0; }
+function playAudio(auto=true){ const file=`slide${idx+1}.mp3`; if(audio.dataset.file!==file){ audio.src=file; audio.dataset.file=file; seek.value=0; curTime.textContent='0:00'; durTime.textContent='0:00'; } audioLabel.textContent=file; audio.playbackRate=speeds[speedIdx]; if(auto){ audio.play().catch(()=>{ playBtn.textContent='▶'; }); } playBtn.textContent='⏸'; }
+function goTo(i, autoplay=true){ idx=Math.max(0,Math.min(slides.length-1,i)); render(); playAudio(autoplay); }
+function next(){ if(idx<slides.length-1) goTo(idx+1,true); }
+function prev(){ if(idx>0) goTo(idx-1,true); }
+
+async function goFullscreen(){
+  try{
+    const el=document.documentElement;
+    if(!document.fullscreenElement && !document.webkitFullscreenElement){
+      if(el.requestFullscreen) await el.requestFullscreen();
+      else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+      else if(el.msRequestFullscreen) el.msRequestFullscreen();
+    }
+  }catch(e){}
+}
+
+document.getElementById('enterBtn').onclick=async()=>{
+  await goFullscreen();
+  opening.classList.remove('active'); main.classList.add('active'); idx=0; render(); playAudio(true);
+};
+document.getElementById('logoHome').onclick=async()=>{
+  audio.pause(); playBtn.textContent='▶'; closeToc();
+  await goFullscreen();
+  main.classList.remove('active'); opening.classList.add('active'); window.scrollTo(0,0);
+};
+document.getElementById('tocBtn').onclick=()=>{ toc.classList.add('open'); document.getElementById('tocBtn').classList.add('active'); };
+function closeToc(){ toc.classList.remove('open'); document.getElementById('tocBtn').classList.remove('active'); }
+document.getElementById('closeToc').onclick=closeToc;
+toc.onclick=(e)=>{ if(e.target===toc) closeToc(); };
+prevBtn.onclick=prev; nextBtn.onclick=next;
+playBtn.onclick=()=>{ if(audio.paused){ audio.play().catch(()=>{}); playBtn.textContent='⏸'; } else { audio.pause(); playBtn.textContent='▶'; } };
+speedBtn.onclick=()=>{ speedIdx=(speedIdx+1)%speeds.length; audio.playbackRate=speeds[speedIdx]; speedBtn.textContent=speeds[speedIdx]+'x'; };
+audio.addEventListener('timeupdate',()=>{ if(!isSeeking && audio.duration){ seek.value=(audio.currentTime/audio.duration)*100; curTime.textContent=fmt(audio.currentTime); durTime.textContent=fmt(audio.duration); }});
+audio.addEventListener('loadedmetadata',()=>{ durTime.textContent=fmt(audio.duration); });
+audio.addEventListener('ended',()=>{ if(idx<slides.length-1) next(); else { playBtn.textContent='▶'; }});
+audio.addEventListener('play',()=>playBtn.textContent='⏸');
+audio.addEventListener('pause',()=>playBtn.textContent='▶');
+seek.addEventListener('input',()=>{ isSeeking=true; if(audio.duration){ const v=(seek.value/100)*audio.duration; curTime.textContent=fmt(v); }});
+seek.addEventListener('change',()=>{ if(audio.duration){ audio.currentTime=(seek.value/100)*audio.duration; } isSeeking=false; });
+
+let sx=0, sy=0;
+wrap.addEventListener('touchstart',e=>{ sx=e.touches[0].clientX; sy=e.touches[0].clientY; },{passive:true});
+wrap.addEventListener('touchend',e=>{ const dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy; if(Math.abs(dx)>70 && Math.abs(dy)<60){ if(dx<0) next(); else prev(); } },{passive:true});
+document.addEventListener('keydown',e=>{ if(!main.classList.contains('active')) return; if(e.key==='ArrowRight') next(); if(e.key==='ArrowLeft') prev(); if(e.key===' ') { e.preventDefault(); playBtn.click(); } if(e.key==='Escape') closeToc(); });
+
+render();
+</script>
+</body>
+</html>
